@@ -60,7 +60,7 @@ search.addEventListener('click', ()=>{
                     image.src='images2/animated/rainy-6.svg';
                     break;
                 case 'Snow':
-                    image.src='images2/animated/snowy-5.png';
+                    image.src='images2/animated/snowy-5.svg';
                     break;
                 case 'Clouds':
                     image.src='images2/animated/cloudy-night-3.svg';
@@ -82,7 +82,7 @@ search.addEventListener('click', ()=>{
                     image.src='images2/animated/rainy-3.svg';
                     break;
                 case 'Snow':
-                    image.src='images2/animated/snowy-3.png';
+                    image.src='images2/animated/snowy-3.svg';
                     break;
                 case 'Clouds':
                     image.src='images2/animated/cloudy-day-3.svg';

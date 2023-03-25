@@ -48,7 +48,53 @@ search.addEventListener('click', ()=>{
         const humidity=document.querySelector('.weather-details .humidity span');
         const wind=document.querySelector('.weather-details .wind span'); 
         const flag=document.getElementById("flag");
-        switch(json.weather[0].main){
+        const date=new Date();
+        let hour=date.getUTCHours()+(json.timezone/(60*60));
+        if(hour>=19 || hour<=6){
+            //Night -> Moon
+            switch(json.weather[0].main){
+                case 'Clear':
+                    image.src='images2/animated/night.svg';
+                    break;
+                case 'Rain':
+                    image.src='images2/animated/rainy-6.svg';
+                    break;
+                case 'Snow':
+                    image.src='images2/animated/snowy-5.png';
+                    break;
+                case 'Clouds':
+                    image.src='images2/animated/cloudy-night-3.svg';
+                    break;
+                case 'Mist':
+                    image.src='images/mist.png';
+                    break;
+                default:
+                    image.src='';
+            }
+        }
+        else{
+            //Day -> Sun
+            switch(json.weather[0].main){
+                case 'Clear':
+                    image.src='images2/animated/day.svg';
+                    break;
+                case 'Rain':
+                    image.src='images2/animated/rainy-3.svg';
+                    break;
+                case 'Snow':
+                    image.src='images2/animated/snowy-3.png';
+                    break;
+                case 'Clouds':
+                    image.src='images2/animated/cloudy-day-3.svg';
+                    break;
+                case 'Mist':
+                    image.src='images/mist.png';
+                    break;
+                default:
+                    image.src='';
+            }
+        }
+      /*  switch(json.weather[0].main){
             case 'Clear':
                 image.src='images/clear.png';
                 break;
@@ -66,7 +112,7 @@ search.addEventListener('click', ()=>{
                 break;
             default:
                 image.src='';
-        }
+        }*/
         celsiusTemp=json.main.temp-273,15;
         temperature.innerHTML=`<img class="temp-icon" src="temperature-icon.svg">${parseInt(celsiusTemp)}<span>°C</span>`;
         description.innerHTML=`${json.weather[0].description}`;

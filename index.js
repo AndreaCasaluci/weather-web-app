@@ -3,15 +3,14 @@ const search = document.querySelector('.search-box button');
 const weatherBox = document.querySelector('.weather-box');
 const weatherDetails = document.querySelector('.weather-details');
 const error404 = document.querySelector('.not-found');
-
-function createFlagClass(countryISOcode){
-    let countryName=new Intl.DisplayNames(['en'], {type: 'region'});
-    return "flag-"+countryName.of(countryISOcode).toLowerCase().replace(" ","-");
-}
-
+let lastCountryISO;
 search.addEventListener('click', ()=>{
     const APIKey='2a3e748a288959cde4f511b76fa790b0';
     const city=document.querySelector('.search-box input').value;
+    if(flag.classList.length!=0){
+        flag.classList.remove("fi");
+        flag.classList.remove("fi-"+lastCountryISO.toLowerCase());
+    }
     if(city === '')
         return;
     let country;
@@ -48,8 +47,7 @@ search.addEventListener('click', ()=>{
         const description=document.querySelector('.weather-box .description');
         const humidity=document.querySelector('.weather-details .humidity span');
         const wind=document.querySelector('.weather-details .wind span'); 
-        const flag=document.querySelector('.flag');
-
+        const flag=document.getElementById("flag");
         switch(json.weather[0].main){
             case 'Clear':
                 image.src='images/clear.png';
@@ -74,12 +72,14 @@ search.addEventListener('click', ()=>{
         description.innerHTML=`${json.weather[0].description}`;
         humidity.innerHTML=`${json.main.humidity}%`;
         wind.innerHTML=`${parseInt(json.wind.speed)}Km/h`;
-        flag.classList.add(createFlagClass(countryISOcode));
-       /* weatherBox.style.display='';
-        weatherDetails.style.display='';*/
+        flag.classList.add("fi");
+        flag.classList.add("fi-"+countryISOcode.toLowerCase());
+        weatherBox.style.display='';
+        weatherDetails.style.display='';
         weatherBox.classList.add('fadeIn');
         weatherDetails.classList.add('fadeIn');
         container.style.height='590px';
+        lastCountryISO=countryISOcode;
     })
     })
 })

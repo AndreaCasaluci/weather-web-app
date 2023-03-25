@@ -18,7 +18,7 @@ search.addEventListener('click', ()=>{
     let lat;
     let lon;
     let capitalizedCity=city.toUpperCase()[0]+city.slice(1);
-    fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${capitalizedCity}&limit=1&appid=${APIKey}`).then(response => response.json()).then(city => {
+    fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${capitalizedCity}&limit=1&appid=${APIKey}`).then(response => response.json()).then(city => {
         if(city.length===0){
             container.style.height='400px';
             weatherBox.style.display='none';
